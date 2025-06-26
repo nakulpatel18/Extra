@@ -4,10 +4,11 @@ import './App.css';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Landing from './pages/Landing';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
-    const navigate = useNavigate(); // ✅ safe to use now
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -20,7 +21,7 @@ const App = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
-        navigate('/login'); // ✅ no reload
+        navigate('/');
     };
 
     return (
@@ -28,7 +29,8 @@ const App = () => {
             <header className="app-header">
                 <h1>Expense Tracker</h1>
                 <nav>
-                    <Link to="/">Dashboard</Link>
+                    <Link to="/">Home</Link>
+                    {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
                     {!isLoggedIn && <Link to="/login">Login</Link>}
                     {!isLoggedIn && <Link to="/register">Register</Link>}
                     {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
@@ -37,9 +39,10 @@ const App = () => {
 
             <main className="app-content">
                 <Routes>
-                    <Route path="/" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-                    <Route path="/login" element={!isLoggedIn ? <Login setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />} />
-                    <Route path="/register" element={!isLoggedIn ? <Register setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />} />
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
+                    <Route path="/login" element={!isLoggedIn ? <Login setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/dashboard" />} />
+                    <Route path="/register" element={!isLoggedIn ? <Register setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/dashboard" />} />
                 </Routes>
             </main>
 

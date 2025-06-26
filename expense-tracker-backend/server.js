@@ -1,65 +1,32 @@
 const express = require('express');
-const router = express.Router();
-const Expense = require('../models/Expense');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+const expenseRoutes = require('./routes/expenses');
 
-// Get all expenses
-router.get('/', async (req, res) => {
-    try {
-        const expenses = await Expense.find();
-        res.json(expenses);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Use expense routes
+app.use('/api/expenses', expenseRoutes);
+app.use('/api/auth', require('./routes/authRoutes'));
+
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('MongoDB connection error:', err);
 });
 
-// Create a new expense
-router.post('/', async (req, res) => {
-    const { title, amount, category, type, date } = req.body;
 
-    const newExpense = new Expense({
-        title,
-        amount,
-        category,
-        type,
-        date
-    });
-
-    try {
-        const savedExpense = await newExpense.save();
-        res.status(201).json(savedExpense);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
+// Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
-
-// Update an expense
-router.put('/:id', async (req, res) => {
-    try {
-        const updatedExpense = await Expense.findByIdAndUpdate(
-            req.params.id,
-            {
-                title: req.body.title,
-                amount: req.body.amount,
-                category: req.body.category,
-                type: req.body.type,
-                date: new Date(req.body.date)
-            },
-            { new: true }
-        );
-        res.json(updatedExpense);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// Delete an expense
-router.delete('/:id', async (req, res) => {
-    try {
-        await Expense.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Expense deleted' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-module.exports = router;
