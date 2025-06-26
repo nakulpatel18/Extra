@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'; // import CSS file
 
@@ -28,7 +28,7 @@ function Login({ setIsLoggedIn }) {
             <form onSubmit={handleSubmit} className="login-form">
                 <h2>Login to Your Account</h2>
 
-                <div>
+                <div className='id'>
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"
@@ -40,7 +40,7 @@ function Login({ setIsLoggedIn }) {
                     />
                 </div>
 
-                <div>
+                <div className='id'>
                     <label htmlFor="password">Password</label>
                     <input
                         id="password"
@@ -57,8 +57,7 @@ function Login({ setIsLoggedIn }) {
                 {error && <p className="error-message">{error}</p>}
 
                 <p className="footer">
-                    Don't have an account?{' '}
-                    <a href="/register">Register</a>
+                    Don't have an account? <Link to="/register">Register</Link>
                 </p>
             </form>
         </div>

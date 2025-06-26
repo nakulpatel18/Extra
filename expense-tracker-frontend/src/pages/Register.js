@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Register.css'; // import CSS
-
+import { Link } from 'react-router-dom';
 const Register = ({ setIsLoggedIn }) => {
     const [formData, setFormData] = useState({
         name: '',
@@ -19,7 +19,7 @@ const Register = ({ setIsLoggedIn }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('/auth/register', formData);
+            const res = await axios.post('/api/auth/register', formData);
             setMessage('Registration successful!');
             if (res.status === 200) {
                 localStorage.setItem('token', res.data.token);
@@ -60,7 +60,7 @@ const Register = ({ setIsLoggedIn }) => {
                 <button type="submit">Register</button>
 
                 <p className="footer">
-                    Already have an account? <a href="/login">Login</a>
+                   Already have an account? <Link to="/login">Login</Link>
                 </p>
 
                 {message && <p className="message">{message}</p>}

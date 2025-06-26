@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #ede9fe, #c7d2fe);
+    background: #f3f4f6;
 }
 
 .login-form {
@@ -80,4 +80,8 @@
 
 .login-form .footer a:hover {
     text-decoration: underline;
+}
+
+.id{
+    width: 91%;
 }

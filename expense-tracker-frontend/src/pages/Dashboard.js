@@ -148,10 +148,6 @@ function Dashboard() {
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="app-footer">
-                <p>&copy; {new Date().getFullYear()} Expense Tracker. All rights reserved.</p>
-            </footer>
         </div>
 
     )
