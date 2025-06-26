@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Register.css'; // import CSS
+import './Register.css';
 import { Link } from 'react-router-dom';
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+
 const Register = ({ setIsLoggedIn }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
+        confirmPassword: '',
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
@@ -18,9 +24,17 @@ const Register = ({ setIsLoggedIn }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            setMessage('Passwords do not match.');
+            return;
+        }
+
         try {
-            const res = await axios.post('/api/auth/register', formData);
+            const { name, email, password } = formData;
+            const res = await axios.post('/api/auth/register', { name, email, password });
             setMessage('Registration successful!');
+
             if (res.status === 200) {
                 localStorage.setItem('token', res.data.token);
                 setIsLoggedIn(true);
@@ -50,17 +64,41 @@ const Register = ({ setIsLoggedIn }) => {
                     onChange={handleChange}
                     required
                 />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                />
+
+                <div className="input-with-icon">
+                    <input
+                        type={showPassword ? 'text' : 'password'}
+                        name="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        required
+                    />
+                    <span className="toggle-icon" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <MdVisibility size={22} /> : <MdVisibilityOff size={22} />}
+                    </span>
+                </div>
+
+                <div className="input-with-icon">
+                    <input
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        onChange={handleChange}
+                        required
+                    />
+                    <span className="toggle-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)} >
+                        {showConfirmPassword ? (
+                            <MdVisibility size={22} />
+                        ) : (
+                            <MdVisibilityOff size={22} />
+                        )}
+                    </span>
+                </div>
+
                 <button type="submit">Register</button>
 
                 <p className="footer">
-                   Already have an account? <Link to="/login">Login</Link>
+                    Already have an account? <Link to="/login">Login</Link>
                 </p>
 
                 {message && <p className="message">{message}</p>}

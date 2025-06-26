@@ -1,5 +1,6 @@
 /* Login.css */
 
+/* --- Main Container & Form Box --- */
 .login-container {
     min-height: 100vh;
     display: flex;
@@ -15,29 +16,36 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
+/* --- Heading --- */
 .login-form h2 {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     color: #4f46e5;
+    margin-bottom: 2rem;
+}
+
+/* --- Equal Spacing for Form Groups --- */
+.id {
+    width: 100%;
     margin-bottom: 1rem;
 }
 
-.login-form label {
-    display: block;
-    margin-bottom: 0.25rem;
-    color: #374151;
-}
-
+/* --- Input Field Styles (UPDATED: font-size) --- */
 .login-form input {
     width: 100%;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
     outline: none;
+    box-sizing: border-box;
+    /* This line ensures the font size is consistent for all inputs and placeholders */
+    font-size: 1rem; 
 }
 
 .login-form input:focus {
@@ -45,9 +53,44 @@
     box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.4);
 }
 
+.login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+/* --- Password Input Container with Icon --- */
+.input-with-icon {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.input-with-icon input {
+    /* Extra right padding for the icon */
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+}
+
+/* --- Visibility Icon Positioning --- */
+.toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    width: 22px;
+}
+
+/* --- Button Styling --- */
 .login-form button {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
+    margin-top: -0.5rem;
     background-color: #4f46e5;
     color: white;
     font-weight: 600;
@@ -61,16 +104,19 @@
     background-color: #4338ca;
 }
 
+/* --- Error Message & Footer --- */
 .login-form .error-message {
     color: #ef4444;
     font-size: 0.875rem;
     text-align: center;
+    margin-top: 1rem;
 }
 
 .login-form .footer {
     text-align: center;
     font-size: 0.875rem;
     color: #6b7280;
+    margin-top: 1rem;
 }
 
 .login-form .footer a {
@@ -80,8 +126,4 @@
 
 .login-form .footer a:hover {
     text-decoration: underline;
-}
-
-.id{
-    width: 91%;
 }

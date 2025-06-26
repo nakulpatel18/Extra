@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import './Login.css'; // import CSS file
+import './Login.css';
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
 function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -42,15 +44,24 @@ function Login({ setIsLoggedIn }) {
 
                 <div className='id'>
                     <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        placeholder="Enter your password"
-                    />
+                    <div className="input-with-icon">
+                        <input 
+                            id="password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Enter your password"
+                        />
+                        <span
+                            className="toggle-icon"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <MdVisibility size={20} /> : <MdVisibilityOff size={20} />}
+                        </span>
+                    </div>
                 </div>
+
 
                 <button type="submit">Login</button>
 
@@ -65,3 +76,4 @@ function Login({ setIsLoggedIn }) {
 }
 
 export default Login;
+
