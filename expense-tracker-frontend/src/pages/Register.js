@@ -1,5 +1,3 @@
-
-
 // -- expense-tracker-frontend\src\pages\Register.js --
 
 import React, { useState } from 'react';
@@ -9,7 +7,8 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
-const Register = ({ setIsLoggedIn }) => {
+// Receive setUserRole as a prop
+const Register = ({ setIsLoggedIn, setUserRole }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -40,16 +39,19 @@ const Register = ({ setIsLoggedIn }) => {
 
         try {
             const { name, email, password } = formData;
-            // Use custom api instance
             const res = await api.post('/auth/register', { name, email, password });
             setMessage('Registration successful!');
 
             if (res.status === 200) {
                 localStorage.setItem('token', res.data.token);
-                localStorage.setItem('userRole', res.data.data.role); // NEW: Store user role from res.data.data
-                localStorage.setItem('userId', res.data.data.id); // NEW: Store user ID from res.data.data
+                localStorage.setItem('userRole', res.data.data.role);
+                localStorage.setItem('userId', res.data.data.id);
+
+                // IMPORTANT: Directly update the state in App.js via props
                 setIsLoggedIn(true);
-                navigate('/');
+                setUserRole(res.data.data.role); // Update userRole state immediately
+
+                navigate('/'); // Navigate to home/dashboard
             }
         } catch (err) {
             setMessage(err.response?.data?.message || 'Registration failed.');
@@ -123,4 +125,3 @@ const Register = ({ setIsLoggedIn }) => {
 };
 
 export default Register;
-

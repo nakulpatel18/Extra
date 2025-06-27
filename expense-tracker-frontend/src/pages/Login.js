@@ -1,4 +1,3 @@
-
 // -- expense-tracker-frontend\src\pages\Login.js --
 
 import React, { useState } from 'react';
@@ -7,7 +6,8 @@ import api from '../api/api'; // Use custom api instance for consistency
 import './Login.css';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
-function Login({ setIsLoggedIn }) {
+// Receive setUserRole as a prop
+function Login({ setIsLoggedIn, setUserRole }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -17,14 +17,17 @@ function Login({ setIsLoggedIn }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Use custom api instance
             const res = await api.post('/auth/login', { email, password });
             if (res.status === 200) {
                 localStorage.setItem('token', res.data.token);
-                localStorage.setItem('userRole', res.data.role); // NEW: Store user role
-                localStorage.setItem('userId', res.data.userId); // NEW: Store user ID
+                localStorage.setItem('userRole', res.data.role);
+                localStorage.setItem('userId', res.data.userId);
+
+                // IMPORTANT: Directly update the state in App.js via props
                 setIsLoggedIn(true);
-                navigate('/');
+                setUserRole(res.data.role); // Update userRole state immediately
+
+                navigate('/'); // Navigate to home/dashboard
             }
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
