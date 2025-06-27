@@ -1,5 +1,7 @@
+// -- expense-tracker-frontend\src\pages\Dashboard.js --
+
 import React, { useState, useEffect, useRef } from 'react'
-import axios from 'axios';
+import api from '../api/api'; // IMPORT THE NEW API INSTANCE
 import CalendarSelector from '../components/CalendarSelector';
 import ExpenseForm from '../components/ExpenseForm';
 import ExpenseList from '../components/ExpenseList';
@@ -13,22 +15,32 @@ function Dashboard() {
     const [activeMonthDate, setActiveMonthDate] = useState(new Date());
     const [editingItem, setEditingItem] = useState(null);
     const formRef = useRef(null);
+    
+    // Use the new `api` instance here
     const fetchExpenses = async () => {
         try {
-            const res = await axios.get('/api/expenses');
+            const res = await api.get('/expenses'); // Use the new API instance
             setExpenses(res.data);
         } catch (err) {
             console.error('Error fetching expenses:', err);
+            // You might want to handle unauthorized errors (e.g., redirect to login)
+            if (err.response && err.response.status === 401) {
+                // Handle token expiration or invalid token
+                localStorage.removeItem('token');
+                window.location.href = '/login'; // Or use navigate from react-router-dom
+            }
         }
     };
+    
     useEffect(() => {
         fetchExpenses();
     }, []);
 
+    // Use the new `api` instance here for adding/updating
     const addOrUpdateExpense = async (data) => {
         if (editingItem) {
             try {
-                const res = await axios.put(`/api/expenses/${editingItem._id}`, data);
+                const res = await api.put(`/expenses/${editingItem._id}`, data);
                 setExpenses(expenses.map((item) => (item._id === editingItem._id ? res.data : item)));
                 setEditingItem(null);
             } catch (err) {
@@ -36,7 +48,7 @@ function Dashboard() {
             }
         } else {
             try {
-                const res = await axios.post('/api/expenses', data);
+                const res = await api.post('/expenses', data);
                 setExpenses([...expenses, res.data]);
             } catch (err) {
                 console.error('Error adding expense:', err);
@@ -44,9 +56,10 @@ function Dashboard() {
         }
     };
 
+    // Use the new `api` instance here for deleting
     const deleteExpense = async (id) => {
         try {
-            await axios.delete(`/api/expenses/${id}`);
+            await api.delete(`/expenses/${id}`);
             setExpenses(expenses.filter((exp) => exp._id !== id));
         } catch (err) {
             console.error('Error deleting expense:', err);
@@ -109,9 +122,7 @@ function Dashboard() {
     };
 
     return (
-
         <div>
-            
             <div className="dashboard-container">
                 {/* Left Panel: Calendar */}
                 <div className="left-panel">
@@ -147,9 +158,7 @@ function Dashboard() {
                     <ExpenseChart chartData={chartData()} />
                 </div>
             </div>
-
         </div>
-
     )
 }
 
