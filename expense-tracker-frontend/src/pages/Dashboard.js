@@ -1,13 +1,11 @@
-// -- expense-tracker-frontend\src\pages\Dashboard.js --
-
-import React, { useState, useEffect, useRef } from 'react'
-import api from '../api/api'; // IMPORT THE NEW API INSTANCE
+import React, { useState, useEffect, useRef } from 'react';
+import api from '../api/api';
 import CalendarSelector from '../components/CalendarSelector';
 import ExpenseForm from '../components/ExpenseForm';
 import ExpenseList from '../components/ExpenseList';
 import IncomeList from '../components/IncomeList';
 import ExpenseChart from '../components/ExpenseChart';
-import '../App.css'
+import '../App.css';
 
 function Dashboard() {
     const [expenses, setExpenses] = useState([]);
@@ -15,28 +13,25 @@ function Dashboard() {
     const [activeMonthDate, setActiveMonthDate] = useState(new Date());
     const [editingItem, setEditingItem] = useState(null);
     const formRef = useRef(null);
-    
-    // Use the new `api` instance here
+
     const fetchExpenses = async () => {
         try {
-            const res = await api.get('/expenses'); // Use the new API instance
+            const res = await api.get('/expenses');
             setExpenses(res.data);
         } catch (err) {
             console.error('Error fetching expenses:', err);
-            // You might want to handle unauthorized errors (e.g., redirect to login)
+            // Handle unauthorized errors by redirecting to login
             if (err.response && err.response.status === 401) {
-                // Handle token expiration or invalid token
                 localStorage.removeItem('token');
-                window.location.href = '/login'; // Or use navigate from react-router-dom
+                window.location.href = '/login';
             }
         }
     };
-    
+
     useEffect(() => {
         fetchExpenses();
     }, []);
 
-    // Use the new `api` instance here for adding/updating
     const addOrUpdateExpense = async (data) => {
         if (editingItem) {
             try {
@@ -56,7 +51,6 @@ function Dashboard() {
         }
     };
 
-    // Use the new `api` instance here for deleting
     const deleteExpense = async (id) => {
         try {
             await api.delete(`/expenses/${id}`);
@@ -141,13 +135,12 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* Right Panel: Lists, Summary, Chart */}
                 <div className="right-panel">
                     <div className="lists">
                         <ExpenseList expenses={filterByTypeAndDate('expense')} onEdit={startEditing} onDelete={deleteExpense} />
                         <IncomeList incomes={filterByTypeAndDate('income')} onEdit={startEditing} onDelete={deleteExpense} />
                     </div>
-
+                    {/* Right Panel: Lists, Summary, Chart */}
                     <div className="summary-wrapper">
                         <div className="summary">
                             <div>Total Income (Monthly): ₹{monthlySummary('income')}</div>
@@ -159,7 +152,10 @@ function Dashboard() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Dashboard;
+
+
+

@@ -1,5 +1,3 @@
-// -- expense-tracker-backend\models\Expense.js -- 
-
 const mongoose = require('mongoose');
 
 const ExpenseSchema = new mongoose.Schema({
@@ -20,14 +18,13 @@ const ExpenseSchema = new mongoose.Schema({
         required: true
     },
     type: {
-        type: String,  // "income" or "expense"
+        type: String, // "income" or "expense"
         required: true
     },
-    // ADD THIS FIELD to link the expense/income to a user
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // This tells Mongoose to reference the 'User' model
-        required: true // A transaction must belong to a user
+        ref: 'User',
+        required: true
     }
 });
 

@@ -3,15 +3,15 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f3f4f6;
-    min-height: 100vh; 
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 h2 {
     text-align: center;
     color: #2f3542;
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 /* Header Styles */
@@ -21,7 +21,7 @@ h2 {
     padding: 15px 0;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Space below header */
+    margin-bottom: 20px;
 }
 
 .app-header h1 {
@@ -29,42 +29,66 @@ h2 {
     font-size: 1.8rem;
 }
 
-/* Main Dashboard Layout */
+.app-header nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.app-header a,
+.app-header button {
+    color: #f1f2f6;
+    text-decoration: none;
+    font-weight: bold;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.app-header a:hover,
+.app-header button:hover {
+    text-decoration: underline;
+}
+
+/* Layout */
 .dashboard-container {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 20px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
-    align-items: flex-start; 
-    flex-grow: 1; 
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    align-items: flex-start;
+    flex-grow: 1;
 }
 
 .left-panel {
-    flex: 1; 
-    min-width: 380px; 
+    flex: 1;
+    min-width: 380px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .right-panel {
-    flex: 2; 
-    min-width: 500px; 
+    flex: 2;
+    min-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
+/* Calendar */
 .calendar-wrapper {
-    max-width: 400px; 
-    margin: 0; 
+    max-width: 400px;
+    margin: 0;
     text-align: center;
-    background-color: #fff; 
+    background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px; 
+    padding: 10px;
 }
 
 .react-calendar {
@@ -128,9 +152,10 @@ h2 {
     color: #ff4757;
 }
 
+/* Form Section */
 .form-section {
-    max-width: 500px; 
-    margin: 0; 
+    max-width: 500px;
+    margin: 0;
     padding: 20px;
     background-color: white;
     border-radius: 12px;
@@ -143,21 +168,17 @@ h2 {
     gap: 12px;
 }
 
-.form-section input {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: white;
-    font-size: 1rem;
-    width: 95%; 
-}
-
+.form-section input,
 .form-section select {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
     background-color: white;
     font-size: 1rem;
+    width: 95%;
+}
+
+.form-section select {
     width: 100%;
 }
 
@@ -176,12 +197,13 @@ h2 {
     background-color: #28c76f;
 }
 
+/* Summary */
 .summary-wrapper {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     padding: 12px 20px;
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 .summary {
@@ -192,12 +214,13 @@ h2 {
     color: #2f3542;
 }
 
+/* Lists */
 .lists {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     flex-wrap: wrap;
-    margin: 0; 
+    margin: 0;
 }
 
 .list-section {
@@ -249,76 +272,28 @@ h2 {
     background-color: #28c76f;
 }
 
+/* Chart */
 .chart-section {
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 20px;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer Styles */
-/* .app-footer {
-    background-color: #2f3542;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: 30px;
-} */
-
-.app-footer p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* Layout wrapper to push footer to bottom */
+/* App Wrapper & Footer */
 .app-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Header bar
-.app-header {
-    background-color: #2f3542;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-} */
-
-/* Navigation styling */
-.app-header nav {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-/* Links and logout button */
-.app-header a,
-.app-header button {
-    color: #f1f2f6;
-    text-decoration: none;
-    font-weight: bold;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.app-header a:hover,
-.app-header button:hover {
-    text-decoration: underline;
-}
-
-/* Content area grows to push footer */
 .app-content {
     flex: 1;
     padding: 2rem;
     background-color: #f1f2f6;
 }
 
-/* Footer */
 .app-footer {
     background-color: #2f3542;
     color: #fff;
@@ -326,3 +301,7 @@ h2 {
     padding: 1rem;
 }
 
+.app-footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}

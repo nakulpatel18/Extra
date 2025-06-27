@@ -1,6 +1,5 @@
-/* Register.css */
 
-/* --- Main Container & Form Box --- */
+
 .register-container {
     min-height: 100vh;
     display: flex;
@@ -17,7 +16,6 @@
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
-    /* Added display: flex and flex-direction: column for better spacing control */
     display: flex;
     flex-direction: column;
 }
@@ -27,15 +25,13 @@
     font-weight: bold;
     text-align: center;
     color: #2563eb;
-    margin-bottom: 2rem; /* Adjusted margin to provide a good gap from the inputs */
+    margin-bottom: 2rem;
 }
 
-/* --- Equal Spacing for all Inputs --- */
-/* This targets all direct <input> children of the form */
 .register-form > input {
     width: 100%;
     padding: 0.75rem;
-    margin-bottom: 1rem; /* This creates the equal space between Name and Email */
+    margin-bottom: 1rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
     outline: none;
@@ -48,18 +44,14 @@
     box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5);
 }
 
-/* --- Password Input Container --- */
-/* This container wraps the password inputs and sets the equal spacing */
 .input-with-icon {
     position: relative;
-    margin-bottom: 1rem; /* This creates equal space between Email, Password, and Confirm Password */
+    margin-bottom: 1rem;
     width: 100%;
 }
 
-/* This targets the input field inside the container */
 .input-with-icon input {
     width: 100%;
-    /* Add padding to the right to prevent text from overlapping the icon */
     padding: 0.75rem 2.5rem 0.75rem 1rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
@@ -68,23 +60,20 @@
     box-sizing: border-box;
 }
 
-/* --- Visibility Icon Positioning --- */
 .toggle-icon {
     position: absolute;
-    top: 50%; /* Center the icon vertically */
-    right: 1rem; /* Position the icon 1rem from the right edge */
-    transform: translateY(-50%); /* Adjust for perfect centering */
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
     cursor: pointer;
     color: #555;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Ensure icon size is consistent */
     height: 22px;
     width: 22px;
 }
 
-/* --- Button Styling --- */
 .register-form button {
     width: 100%;
     padding: 0.75rem;
@@ -95,14 +84,13 @@
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.3s;
-    margin-top: 0.5rem; /* Reduced margin to match the spacing in the image */
+    margin-top: 0.5rem;
 }
 
 .register-form button:hover {
     background-color: #2563eb;
 }
 
-/* --- Footer & Message Styles --- */
 .register-form .footer {
     text-align: center;
     font-size: 0.875rem;
