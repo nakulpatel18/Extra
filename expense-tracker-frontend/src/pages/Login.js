@@ -62,6 +62,8 @@ function Login({ setIsLoggedIn }) {
                     </div>
                 </div>
 
+                {/* NEW: Forgot password link */}
+                <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
 
                 <button type="submit">Login</button>
 
