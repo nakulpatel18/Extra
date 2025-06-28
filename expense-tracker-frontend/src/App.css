@@ -61,14 +61,16 @@ h2 {
 }
 
 /* ✅ Fixed Main Navigation */
+
 .app-header nav.main-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
     gap: 1rem;
     padding: 0 1.5rem;
+    position: relative; /* ⬅ Needed to position auth-links */
 }
 
 .app-header nav.main-nav .main-links {
@@ -81,10 +83,10 @@ h2 {
 
 .app-header nav.main-nav .auth-links {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-    flex-shrink: 0;
+    position: absolute;
+    right: 1.5rem;
 }
 
 @media (max-width: 768px) {
