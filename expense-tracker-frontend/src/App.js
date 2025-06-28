@@ -47,7 +47,7 @@ const App = () => {
         localStorage.removeItem('userId');
         setIsLoggedIn(false);
         setUserRole(null);
-        navigate('/Login'); // REDIRECT TO Landing PAGE AFTER LOGOUT
+        navigate('/'); // REDIRECT TO Landing PAGE AFTER LOGOUT
     };
 
     return (
