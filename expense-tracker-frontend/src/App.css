@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color: #2f3542; /* Default text color */
 }
 
 h2 {
@@ -33,18 +34,17 @@ h2 {
 
 .app-header h1 {
     margin: 0 0 10px 0; /* Add bottom margin to separate from nav */
-    font-size: 2.8rem; /* FURTHER INCREASED FONT SIZE for header title */
+    font-size: 2.8rem; /* Retained increased font size for header title */
     flex-shrink: 0;
 }
 
 /* Main Navigation Container (the <nav> element itself) */
-.app-header nav.main-nav { 
+.app-header nav.main-nav { /* IMPORTANT: Ensure your <nav> in App.js has class="main-nav" */
     display: flex;
     width: 100%; /* Important: Make nav take full width */
     justify-content: space-between; /* Distributes child groups: main-links left, auth-links right */
     align-items: center;
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    /* Removed explicit gap on nav, groups will manage their own spacing */
 }
 
 /* Group for main navigation links (Home, Dashboard, Admin Panel, Login, Register) */
@@ -55,7 +55,6 @@ h2 {
     flex-grow: 1; /* CRITICAL: Allows this group to take all available space, pushing auth-links right */
     flex-basis: auto; /* Allow content to determine initial size, then grow */
     order: 1; /* Ensures this group comes first logically */
-    /* Added padding to give visual space on left/right when it's the center group */
     padding: 0 1rem; /* Adjust as needed for visual balance */
 }
 
@@ -125,38 +124,38 @@ h2 {
 }
 
 
-/* Layout */
+/* Dashboard Layout - CRITICAL FIXES HERE */
 .dashboard-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    align-items: flex-start;
-    flex-grow: 1;
+    flex-wrap: wrap; /* Allows panels to wrap on smaller screens */
+    gap: 20px; /* Space between left and right panels */
+    max-width: 1200px; /* Max width for the whole dashboard content */
+    margin: 0 auto; /* Center the dashboard container */
+    padding: 0 20px; /* Padding on sides for smaller screens */
+    align-items: flex-start; /* Align panels to the top */
+    flex-grow: 1; /* Allows dashboard content to grow and fill space */
 }
 
 .left-panel {
-    flex: 1;
-    min-width: 380px;
+    flex: 1; /* Allows it to grow and shrink */
+    min-width: 380px; /* Minimum width before wrapping */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px; /* Space between calendar and form */
 }
 
 .right-panel {
-    flex: 2;
-    min-width: 500px;
+    flex: 2; /* Allows it to take twice as much space as left-panel */
+    min-width: 500px; /* Minimum width before wrapping */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px; /* Space between summary and lists/chart */
 }
 
 /* Calendar */
 .calendar-wrapper {
-    max-width: 400px;
-    margin: 0;
+    max-width: 400px; /* Restrict calendar width */
+    margin: 0; /* Remove external margins */
     text-align: center;
     background-color: #fff;
     border-radius: 12px;
@@ -165,7 +164,7 @@ h2 {
 }
 
 .react-calendar {
-    width: 100% !important;
+    width: 100% !important; /* Make calendar fill its wrapper */
     background-color: #fff;
     border: none;
     border-radius: 12px;
@@ -226,10 +225,23 @@ h2 {
     color: #ff4757;
 }
 
+/* Highlight style for dates with transactions (retained) */
+.react-calendar__tile.highlight-date {
+    background-color: #f5a25e; /* Blue highlight */
+    color: white !important; /* Ensure text is visible */
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.react-calendar__tile.highlight-date:hover {
+    background-color: #f5e7d9; /* Darker blue on hover */
+}
+
+
 /* Form Section */
 .form-section {
-    max-width: 500px;
-    margin: 0;
+    max-width: 500px; /* Max width for the form card */
+    margin: 0; /* Remove external margins */
     padding: 20px;
     background-color: white;
     border-radius: 12px;
@@ -250,7 +262,7 @@ h2 {
     background-color: white;
     color: #2f3542; /* Input text color */
     font-size: 1rem;
-    width: 95%;
+    width: 95%; /* Adjust width to fit padding */
 }
 
 .form-section select {
@@ -292,9 +304,9 @@ h2 {
 /* Lists */
 .lists {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    justify-content: space-between; /* Space out expense and income lists */
+    gap: 20px; /* Gap between the two lists */
+    flex-wrap: wrap; /* Allow lists to wrap if screen is too small */
     margin: 0;
 }
 
@@ -303,8 +315,8 @@ h2 {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    min-width: 250px;
+    flex: 1; /* Allow lists to grow/shrink within their container */
+    min-width: 250px; /* Minimum width for each list before wrapping */
 }
 
 .list-section h2 {
@@ -381,3 +393,40 @@ h2 {
     margin: 0;
     font-size: 0.9rem;
 }
+
+/* Line chart css */
+.line-chart-section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+}
+
+.line-chart-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2f3542;
+}
+
+/* Charts container to arrange charts side by side */
+.charts-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 40px auto; /* center and spacing */
+    flex-wrap: wrap; /* allow wrapping on small screens */
+}
+
+/* Individual chart box (each chart in a card) */
+.chart-box {
+    flex: 1;
+    min-width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+

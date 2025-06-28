@@ -2,7 +2,12 @@ import React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-const CalendarSelector = ({ selectedDate, setSelectedDate, setActiveMonthDate }) => {
+const CalendarSelector = ({
+    selectedDate,
+    setSelectedDate,
+    setActiveMonthDate,
+    highlightedDates = []
+}) => {
     const handleMonthChange = ({ activeStartDate }) => {
         if (setActiveMonthDate) {
             setActiveMonthDate(activeStartDate);
@@ -22,6 +27,12 @@ const CalendarSelector = ({ selectedDate, setSelectedDate, setActiveMonthDate })
         }
     };
 
+    // Check if date should be highlighted
+    const isHighlighted = (date) => {
+        const dateString = date.toISOString().split('T')[0];
+        return highlightedDates.includes(dateString);
+    };
+
     return (
         <div className="calendar-wrapper">
             <h2>Select Date</h2>
@@ -30,6 +41,12 @@ const CalendarSelector = ({ selectedDate, setSelectedDate, setActiveMonthDate })
                 value={selectedDate}
                 className="react-calendar"
                 onActiveStartDateChange={handleMonthChange}
+                tileClassName={({ date, view }) => {
+                    if (view === 'month' && isHighlighted(date)) {
+                        return 'highlight-date';
+                    }
+                    return null;
+                }}
             />
         </div>
     );
