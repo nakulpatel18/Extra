@@ -1,8 +1,11 @@
+/* -- expense-tracker-frontend\src\App.css -- */
+
+/* Base Styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f3f4f6;
+    background-color: #f3f4f6; /* Light theme default */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,35 +13,88 @@ body {
 
 h2 {
     text-align: center;
-    color: #2f3542;
+    color: #2f3542; /* Default text color for headings */
     margin-top: 20px;
 }
 
 /* Header Styles */
 .app-header {
-    background-color: #2f3542;
+    background-color: #2f3542; /* Dark header */
     color: white;
-    padding: 15px 0;
+    padding: 15px 20px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    
+    display: flex; 
+    flex-direction: column; /* Stack title and nav vertically */
+    align-items: center; /* Center items horizontally within the header */
 }
 
 .app-header h1 {
-    margin: 0;
-    font-size: 1.8rem;
+    margin: 0 0 10px 0; /* Add bottom margin to separate from nav */
+    font-size: 2.8rem; /* FURTHER INCREASED FONT SIZE for header title */
+    flex-shrink: 0;
 }
 
-.app-header nav {
+/* Main Navigation Container (the <nav> element itself) */
+.app-header nav.main-nav { 
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
+    width: 100%; /* Important: Make nav take full width */
+    justify-content: space-between; /* Distributes child groups: main-links left, auth-links right */
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    /* Removed explicit gap on nav, groups will manage their own spacing */
 }
+
+/* Group for main navigation links (Home, Dashboard, Admin Panel, Login, Register) */
+.app-header nav.main-nav .main-links {
+    display: flex;
+    gap: 1.5rem; /* Gap between individual links */
+    justify-content: center; /* Centers links WITHIN this group */
+    flex-grow: 1; /* CRITICAL: Allows this group to take all available space, pushing auth-links right */
+    flex-basis: auto; /* Allow content to determine initial size, then grow */
+    order: 1; /* Ensures this group comes first logically */
+    /* Added padding to give visual space on left/right when it's the center group */
+    padding: 0 1rem; /* Adjust as needed for visual balance */
+}
+
+/* Group for authentication links (Profile, Logout) */
+.app-header nav.main-nav .auth-links {
+    display: flex;
+    gap: 1rem; /* Gap between Profile icon and Logout button */
+    align-items: center;
+    flex-shrink: 0; /* Prevent this group from shrinking */
+    order: 2; /* Ensures this group is second (on the right) */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .app-header nav.main-nav {
+        flex-direction: column; /* Stack main links and auth links vertically */
+        align-items: flex-start; /* Align stacked items to the left */
+        gap: 1rem; /* Gap between the stacked rows */
+    }
+
+    .app-header nav.main-nav .main-links {
+        width: 100%; /* Take full width when stacked */
+        justify-content: center; /* Center main links even when stacked */
+        order: 1; /* Keep them on top */
+        padding: 0; /* Remove horizontal padding when stacked */
+    }
+
+    .app-header nav.main-nav .auth-links {
+        width: 100%; /* Take full width when stacked */
+        justify-content: flex-end; /* Push auth links to the right of their row */
+        margin-left: 0; /* Remove auto margin when stacked vertically */
+        order: 2; /* Keep them below main links */
+    }
+}
+
 
 .app-header a,
 .app-header button {
-    color: #f1f2f6;
+    color: #f1f2f6; /* Light text for links/buttons */
     text-decoration: none;
     font-weight: bold;
     background: none;
@@ -50,7 +106,24 @@ h2 {
 .app-header a:hover,
 .app-header button:hover {
     text-decoration: underline;
+    color: #eee;
 }
+
+/* Profile Icon Link Styling */
+.profile-icon-link {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+}
+
+.profile-icon-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
 
 /* Layout */
 .dashboard-container {
@@ -136,6 +209,7 @@ h2 {
     text-align: center;
     border-radius: 8px;
     transition: all 0.2s ease;
+    color: #2f3542; /* Default tile text color */
 }
 
 .react-calendar__tile--active {
@@ -174,6 +248,7 @@ h2 {
     border-radius: 6px;
     border: 1px solid #ccc;
     background-color: white;
+    color: #2f3542; /* Input text color */
     font-size: 1rem;
     width: 95%;
 }
@@ -250,6 +325,7 @@ h2 {
     padding: 8px 0;
     border-bottom: 1px solid #eee;
     gap: 10px;
+    color: #6b7280; /* List item text color */
 }
 
 .list-section .actions {
@@ -291,11 +367,11 @@ h2 {
 .app-content {
     flex: 1;
     padding: 2rem;
-    background-color: #f1f2f6;
+    background-color: #f1f2f6; /* Light content background */
 }
 
 .app-footer {
-    background-color: #2f3542;
+    background-color: #2f3542; /* Dark footer, matching header */
     color: #fff;
     text-align: center;
     padding: 1rem;
