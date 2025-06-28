@@ -1,0 +1,205 @@
+/* Calendar */
+.calendar-wrapper {
+    max-width: 400px;
+    margin: 0;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.react-calendar {
+    width: 100% !important;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.react-calendar__navigation button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #2f3542;
+}
+
+.react-calendar__navigation button:hover {
+    background-color: #f1f2f6;
+    border-radius: 6px;
+}
+
+.react-calendar__month-view__weekdays {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.react-calendar__tile {
+    padding: 10px;
+    background: none;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: #2f3542;
+}
+
+.react-calendar__tile--active {
+    background: #2ed573;
+    color: white;
+}
+
+.react-calendar__tile--now {
+    background: #dff9fb;
+    color: black;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #ff4757;
+}
+
+.react-calendar__tile.highlight-date {
+    background-color: #f5a25e;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.react-calendar__tile.highlight-date:hover {
+    background-color: #f5e7d9;
+}
+
+/* Form Section */
+.form-section {
+    max-width: 500px;
+    margin: 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-section input,
+.form-section select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #2f3542;
+    font-size: 1rem;
+    width: 95%;
+}
+
+.form-section select {
+    width: 100%;
+}
+
+.form-section button {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2ed573;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+    background-color: #28c76f;
+}
+
+/* List Section (Expense & Income List) */
+.list-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 250px;
+}
+
+.list-section h2 {
+    text-align: center;
+    color: #2f3542;
+    margin-bottom: 10px;
+}
+
+.list-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list-section li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    gap: 10px;
+    color: #6b7280;
+}
+
+.list-section .actions {
+    display: flex;
+    gap: 6px;
+}
+
+.list-section button {
+    padding: 6px 10px;
+    background-color: #2ed573;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+}
+
+.list-section button:hover {
+    background-color: #28c76f;
+}
+
+/* Chart Section (Bar Chart) */
+.chart-section {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Line Chart Section */
+.line-chart-section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+}
+
+.line-chart-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2f3542;
+}

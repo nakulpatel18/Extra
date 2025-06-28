@@ -1,4 +1,6 @@
 import React from 'react';
+import './component.css';
+
 
 const IncomeList = ({ incomes, onEdit, onDelete }) => (
     <div className="list-section">

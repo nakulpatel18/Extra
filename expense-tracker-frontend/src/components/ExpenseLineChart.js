@@ -9,6 +9,8 @@ import {
     ResponsiveContainer,
     LabelList
 } from 'recharts';
+import './component.css';
+
 
 const months = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',

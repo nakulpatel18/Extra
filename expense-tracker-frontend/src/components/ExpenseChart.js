@@ -9,6 +9,7 @@ import {
     ResponsiveContainer,
     LabelList
 } from 'recharts';
+import './component.css'
 
 const ExpenseChart = ({ chartData }) => {
     const maxAmount = chartData.reduce((max, item) => Math.max(max, item.amount), 0);

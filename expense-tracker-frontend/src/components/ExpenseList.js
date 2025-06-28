@@ -1,4 +1,6 @@
 import React from 'react';
+import './component.css';
+
 
 const ExpenseList = ({ expenses, onEdit, onDelete }) => (
     <div className="list-section">

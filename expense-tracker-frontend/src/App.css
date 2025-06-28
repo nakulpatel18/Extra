@@ -1,99 +1,117 @@
-/* -- expense-tracker-frontend\src\App.css -- */
-
 /* Base Styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f3f4f6; /* Light theme default */
+    background-color: #f3f4f6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    color: #2f3542; /* Default text color */
+    color: #2f3542;
 }
 
 h2 {
     text-align: center;
-    color: #2f3542; /* Default text color for headings */
+    color: #2f3542;
     margin-top: 20px;
+}
+
+/* App Wrapper & Footer */
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f1f2f6;
+}
+
+.app-footer {
+    background-color: #2f3542;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.app-footer p {
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 /* Header Styles */
 .app-header {
-    background-color: #2f3542; /* Dark header */
+    background-color: #2f3542;
     color: white;
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    
-    display: flex; 
-    flex-direction: column; /* Stack title and nav vertically */
-    align-items: center; /* Center items horizontally within the header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .app-header h1 {
-    margin: 0 0 10px 0; /* Add bottom margin to separate from nav */
-    font-size: 2.8rem; /* Retained increased font size for header title */
+    margin: 0 0 10px 0;
+    font-size: 2.8rem;
     flex-shrink: 0;
 }
 
-/* Main Navigation Container (the <nav> element itself) */
-.app-header nav.main-nav { /* IMPORTANT: Ensure your <nav> in App.js has class="main-nav" */
+/* Main Navigation */
+.app-header nav.main-nav {
     display: flex;
-    width: 100%; /* Important: Make nav take full width */
-    justify-content: space-between; /* Distributes child groups: main-links left, auth-links right */
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
 }
 
-/* Group for main navigation links (Home, Dashboard, Admin Panel, Login, Register) */
 .app-header nav.main-nav .main-links {
     display: flex;
-    gap: 1.5rem; /* Gap between individual links */
-    justify-content: center; /* Centers links WITHIN this group */
-    flex-grow: 1; /* CRITICAL: Allows this group to take all available space, pushing auth-links right */
-    flex-basis: auto; /* Allow content to determine initial size, then grow */
-    order: 1; /* Ensures this group comes first logically */
-    padding: 0 1rem; /* Adjust as needed for visual balance */
+    gap: 1.5rem;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: auto;
+    order: 1;
+    padding: 0 1rem;
 }
 
-/* Group for authentication links (Profile, Logout) */
 .app-header nav.main-nav .auth-links {
     display: flex;
-    gap: 1rem; /* Gap between Profile icon and Logout button */
+    gap: 1rem;
     align-items: center;
-    flex-shrink: 0; /* Prevent this group from shrinking */
-    order: 2; /* Ensures this group is second (on the right) */
+    flex-shrink: 0;
+    order: 2;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .app-header nav.main-nav {
-        flex-direction: column; /* Stack main links and auth links vertically */
-        align-items: flex-start; /* Align stacked items to the left */
-        gap: 1rem; /* Gap between the stacked rows */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
     }
 
     .app-header nav.main-nav .main-links {
-        width: 100%; /* Take full width when stacked */
-        justify-content: center; /* Center main links even when stacked */
-        order: 1; /* Keep them on top */
-        padding: 0; /* Remove horizontal padding when stacked */
+        width: 100%;
+        justify-content: center;
+        order: 1;
+        padding: 0;
     }
 
     .app-header nav.main-nav .auth-links {
-        width: 100%; /* Take full width when stacked */
-        justify-content: flex-end; /* Push auth links to the right of their row */
-        margin-left: 0; /* Remove auto margin when stacked vertically */
-        order: 2; /* Keep them below main links */
+        width: 100%;
+        justify-content: flex-end;
+        margin-left: 0;
+        order: 2;
     }
 }
 
-
 .app-header a,
 .app-header button {
-    color: #f1f2f6; /* Light text for links/buttons */
+    color: #f1f2f6;
     text-decoration: none;
     font-weight: bold;
     background: none;
@@ -108,7 +126,7 @@ h2 {
     color: #eee;
 }
 
-/* Profile Icon Link Styling */
+/* Profile Icon Link */
 .profile-icon-link {
     display: flex;
     align-items: center;
@@ -122,311 +140,3 @@ h2 {
     background-color: rgba(255, 255, 255, 0.1);
     text-decoration: none;
 }
-
-
-/* Dashboard Layout - CRITICAL FIXES HERE */
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap; /* Allows panels to wrap on smaller screens */
-    gap: 20px; /* Space between left and right panels */
-    max-width: 1200px; /* Max width for the whole dashboard content */
-    margin: 0 auto; /* Center the dashboard container */
-    padding: 0 20px; /* Padding on sides for smaller screens */
-    align-items: flex-start; /* Align panels to the top */
-    flex-grow: 1; /* Allows dashboard content to grow and fill space */
-}
-
-.left-panel {
-    flex: 1; /* Allows it to grow and shrink */
-    min-width: 380px; /* Minimum width before wrapping */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between calendar and form */
-}
-
-.right-panel {
-    flex: 2; /* Allows it to take twice as much space as left-panel */
-    min-width: 500px; /* Minimum width before wrapping */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between summary and lists/chart */
-}
-
-/* Calendar */
-.calendar-wrapper {
-    max-width: 400px; /* Restrict calendar width */
-    margin: 0; /* Remove external margins */
-    text-align: center;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-}
-
-.react-calendar {
-    width: 100% !important; /* Make calendar fill its wrapper */
-    background-color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 10px;
-}
-
-.react-calendar__navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.react-calendar__navigation button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #2f3542;
-}
-
-.react-calendar__navigation button:hover {
-    background-color: #f1f2f6;
-    border-radius: 6px;
-}
-
-.react-calendar__month-view__weekdays {
-    display: grid !important;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.8rem;
-    margin-bottom: 8px;
-    border-bottom: 1px solid #ccc;
-}
-
-.react-calendar__tile {
-    padding: 10px;
-    background: none;
-    text-align: center;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    color: #2f3542; /* Default tile text color */
-}
-
-.react-calendar__tile--active {
-    background: #2ed573;
-    color: white;
-}
-
-.react-calendar__tile--now {
-    background: #dff9fb;
-    color: black;
-}
-
-.react-calendar__month-view__days__day--weekend {
-    color: #ff4757;
-}
-
-/* Highlight style for dates with transactions (retained) */
-.react-calendar__tile.highlight-date {
-    background-color: #f5a25e; /* Blue highlight */
-    color: white !important; /* Ensure text is visible */
-    font-weight: bold;
-    border-radius: 8px;
-}
-
-.react-calendar__tile.highlight-date:hover {
-    background-color: #f5e7d9; /* Darker blue on hover */
-}
-
-
-/* Form Section */
-.form-section {
-    max-width: 500px; /* Max width for the form card */
-    margin: 0; /* Remove external margins */
-    padding: 20px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.form-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.form-section input,
-.form-section select {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: white;
-    color: #2f3542; /* Input text color */
-    font-size: 1rem;
-    width: 95%; /* Adjust width to fit padding */
-}
-
-.form-section select {
-    width: 100%;
-}
-
-.form-section button {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    background-color: #2ed573;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.form-section button:hover {
-    background-color: #28c76f;
-}
-
-/* Summary */
-.summary-wrapper {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    padding: 12px 20px;
-    margin-top: 10px;
-}
-
-.summary {
-    display: flex;
-    justify-content: space-around;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #2f3542;
-}
-
-/* Lists */
-.lists {
-    display: flex;
-    justify-content: space-between; /* Space out expense and income lists */
-    gap: 20px; /* Gap between the two lists */
-    flex-wrap: wrap; /* Allow lists to wrap if screen is too small */
-    margin: 0;
-}
-
-.list-section {
-    background-color: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    flex: 1; /* Allow lists to grow/shrink within their container */
-    min-width: 250px; /* Minimum width for each list before wrapping */
-}
-
-.list-section h2 {
-    text-align: center;
-    color: #2f3542;
-    margin-bottom: 10px;
-}
-
-.list-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.list-section li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    gap: 10px;
-    color: #6b7280; /* List item text color */
-}
-
-.list-section .actions {
-    display: flex;
-    gap: 6px;
-}
-
-.list-section button {
-    padding: 6px 10px;
-    background-color: #2ed573;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: background-color 0.3s ease;
-}
-
-.list-section button:hover {
-    background-color: #28c76f;
-}
-
-/* Chart */
-.chart-section {
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* App Wrapper & Footer */
-.app-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.app-content {
-    flex: 1;
-    padding: 2rem;
-    background-color: #f1f2f6; /* Light content background */
-}
-
-.app-footer {
-    background-color: #2f3542; /* Dark footer, matching header */
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-}
-
-.app-footer p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* Line chart css */
-.line-chart-section {
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    max-width: 800px;
-}
-
-.line-chart-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2f3542;
-}
-
-/* Charts container to arrange charts side by side */
-.charts-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto 40px auto; /* center and spacing */
-    flex-wrap: wrap; /* allow wrapping on small screens */
-}
-
-/* Individual chart box (each chart in a card) */
-.chart-box {
-    flex: 1;
-    min-width: 300px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-

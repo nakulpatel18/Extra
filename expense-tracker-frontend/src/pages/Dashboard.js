@@ -9,7 +9,7 @@ import ExpenseList from '../components/ExpenseList';
 import IncomeList from '../components/IncomeList';
 import ExpenseChart from '../components/ExpenseChart';
 import ExpenseLineChart from '../components/ExpenseLineChart';
-import '../App.css';
+import './dashboard.css';
 
 function Dashboard() {
     const [expenses, setExpenses] = useState([]);
@@ -37,13 +37,19 @@ function Dashboard() {
     }, []);
 
     useEffect(() => {
-        const datesWithTransactions = new Set();
-        expenses.forEach((t) => {
-            const transactionDate = new Date(t.date);
-            datesWithTransactions.add(transactionDate.toISOString().split('T')[0]);
-        });
-        setHighlightedDates(Array.from(datesWithTransactions));
-    }, [expenses]);
+    const datesWithTransactions = new Set();
+    expenses.forEach((t) => {
+        const localDate = new Date(t.date);
+        const year = localDate.getFullYear();
+        const month = String(localDate.getMonth() + 1).padStart(2, '0');
+        const day = String(localDate.getDate()).padStart(2, '0');
+        const localDateStr = `${year}-${month}-${day}`;
+        datesWithTransactions.add(localDateStr);
+    });
+    setHighlightedDates(Array.from(datesWithTransactions));
+}, [expenses]);
+
+
 
     const addOrUpdateExpense = async (data) => {
         if (editingItem) {
