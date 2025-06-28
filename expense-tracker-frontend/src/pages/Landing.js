@@ -3,20 +3,28 @@ import './Landing.css';
 
 const features = [
     {
-        title: 'Track Expenses',
-        description: 'Add, view, edit, and delete daily expenses with categories.'
+        title: 'Track Expenses & Incomes',
+        description: 'Effortlessly add, view, edit, and delete all your daily expenses and incomes, categorized for clear financial tracking.'
     },
     {
-        title: 'Track Incomes',
-        description: 'Record income sources like salary, gifts, or investments.'
+        title: 'Secure Authentication',
+        description: 'Register, log in securely with robust authentication, and easily manage your account with password reset options.'
     },
     {
-        title: 'Monthly Overview',
-        description: 'View your monthly summary of income and expenses.'
+        title: 'Personalized Profile',
+        description: 'Manage your user profile, update personal details, and change your password with ease.'
+    },
+    {
+        title: 'Monthly Spending Insights',
+        description: 'Get a clear monthly overview of your income and expenses, helping you understand your financial position.'
+    },
+    {
+        title: 'Admin Control Panel',
+        description: 'Admins can manage all users and view, sort, and delete all transactions recorded across the platform.'
     },
     {
         title: 'Interactive Charts',
-        description: 'Visualize your spending patterns using bar charts.'
+        description: 'Visualize your spending patterns using bar charts./nVisualize your monthly spending trends with an interactive line chart'
     }
 ];
 
