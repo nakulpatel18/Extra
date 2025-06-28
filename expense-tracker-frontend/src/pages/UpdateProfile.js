@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
-import '../pages/Login.css'; // Reusing general form styles
+import '../pages/ProfileAuthForms.css'; // Import from NEW combined CSS
 
 const UpdateProfile = () => {
     const [formData, setFormData] = useState({
@@ -15,7 +15,6 @@ const UpdateProfile = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch current user details to pre-fill the form
         const fetchCurrentProfile = async () => {
             try {
                 const res = await api.get('/users/profile');
@@ -43,10 +42,8 @@ const UpdateProfile = () => {
         try {
             const res = await api.put('/users/profile', formData);
             setMessage(res.data.message || 'Profile updated successfully!');
-            // Optionally update local storage if necessary, though profile data isn't directly used
-            // localStorage.setItem('userName', res.data.user.name); // If you plan to display name in header etc.
             setTimeout(() => {
-                navigate('/profile'); // Go back to profile view after update
+                navigate('/profile');
             }, 2000);
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to update profile. Please try again.');
@@ -55,14 +52,14 @@ const UpdateProfile = () => {
     };
 
     return (
-        <div className="login-container">
-            <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-container-wrapper"> {/* Uses common wrapper class */}
+            <form onSubmit={handleSubmit} className="auth-form-card"> {/* Uses common form card class */}
                 <h2>Update Profile Details</h2>
 
                 {error && <p className="message error-message">{error}</p>}
-                {message && <p className="message success-message">{message}</p>}
+                {message && <p className="message">{message}</p>}
 
-                <div className='id'>
+                <div className='form-group'> {/* Uses common form-group class */}
                     <label htmlFor="name">Username</label>
                     <input
                         id="name"
@@ -75,7 +72,7 @@ const UpdateProfile = () => {
                     />
                 </div>
 
-                <div className='id'>
+                <div className='form-group'> {/* Uses common form-group class */}
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"

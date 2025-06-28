@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api/api'; // Use your custom axios instance
-import './Login.css'; // You can reuse some styles from Login.css
+import api from '../api/api';
+import '../pages/ProfileAuthForms.css'; // Import from NEW combined CSS
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -16,21 +16,19 @@ const ForgotPassword = () => {
         setError('');
         try {
             const res = await api.post('/auth/forgot-password', { email });
-            setMessage(res.data.message || 'Password reset link sent to your email if it exists.');
-            setEmail(''); // Clear the email field
+            setMessage(res.data.message || 'Password reset link sent to your email.');
         } catch (err) {
-            setError(err.response?.data?.message || 'Failed to send reset link. Please try again.');
-            console.error('Forgot password error:', err);
+            setError(err.response?.data?.message || 'Failed to send reset link. Please check your email.');
         }
     };
 
     return (
-        <div className="login-container"> {/* Reusing login container style */}
-            <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-container-wrapper"> {/* Uses common wrapper class */}
+            <form onSubmit={handleSubmit} className="auth-form-card"> {/* Uses common form card class */}
                 <h2>Forgot Password</h2>
                 <p>Enter your email address to receive a password reset link.</p>
 
-                <div className='id'>
+                <div className="form-group"> {/* Uses common form-group class */}
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"
@@ -44,7 +42,7 @@ const ForgotPassword = () => {
 
                 <button type="submit">Send Reset Link</button>
 
-                {message && <p className="message success-message">{message}</p>}
+                {message && <p className="message">{message}</p>}
                 {error && <p className="message error-message">{error}</p>}
 
                 <p className="footer">

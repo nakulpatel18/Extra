@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/api'; // Your custom axios instance
-import '../pages/Login.css'; // Reusing some general form styles
+import '../pages/ProfileAuthForms.css'; // Import from NEW combined CSS
 
 const Profile = () => {
     const [user, setUser] = useState(null);
@@ -29,30 +29,32 @@ const Profile = () => {
     }, []);
 
     if (loading) {
-        return <div className="login-container">Loading profile...</div>;
+        return <div className="form-container-wrapper">Loading profile...</div>;
     }
 
     if (error) {
-        return <div className="login-container"><p className="message error-message">{error}</p></div>;
+        return <div className="form-container-wrapper"><p className="message error-message">{error}</p></div>;
     }
 
     if (!user) {
-        return <div className="login-container">User profile not found.</div>;
+        return <div className="form-container-wrapper">User profile not found.</div>;
     }
 
     return (
-        <div className="login-container"> {/* Reusing login container for centering */}
-            <div className="login-form"> {/* Reusing login form card styling */}
+        <div className="form-container-wrapper"> {/* Uses common wrapper class */}
+            <div className="auth-form-card"> {/* Uses common form card class */}
                 <h2>Your Profile</h2>
-                <p><strong>Username:</strong> {user.name}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                {/* You can add more profile details here if you expand the user model */}
+                <div className="profile-details">
+                    <p><strong>Username:</strong> {user.name}</p>
+                    <p><strong>Email:</strong> {user.email}</p>
+                </div>
+                
 
-                <div style={{ marginTop: '1.5rem' }}>
-                    <Link to="/profile/update" className="login-form button" style={{ display: 'block', textDecoration: 'none', marginBottom: '1rem' }}>
+                <div className="profile-actions"> {/* Uses common profile-actions class */}
+                    <Link to="/profile/update" className="profile-action-button">
                         Update Details
                     </Link>
-                    <Link to="/profile/change-password" className="login-form button" style={{ display: 'block', textDecoration: 'none' }}>
+                    <Link to="/profile/change-password" className="profile-action-button">
                         Change Password
                     </Link>
                 </div>
