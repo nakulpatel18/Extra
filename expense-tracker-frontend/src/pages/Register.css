@@ -114,4 +114,10 @@
     color: #dc2626;
 }
 
+/*extra*/
+
+.register-container {
+    background: transparent !important;
+    box-shadow: none !important;
+}
 

@@ -2,13 +2,12 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api/api'; // Use custom api instance for consistency
+import api from '../api/api';
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
-// Receive setUserRole as a prop
-const Register = ({ setIsLoggedIn, setUserRole }) => {
+const Register = ({ setIsLoggedIn, setUserRole, onSuccess, switchToLogin }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -47,11 +46,14 @@ const Register = ({ setIsLoggedIn, setUserRole }) => {
                 localStorage.setItem('userRole', res.data.data.role);
                 localStorage.setItem('userId', res.data.data.id);
 
-                // IMPORTANT: Directly update the state in App.js via props
                 setIsLoggedIn(true);
-                setUserRole(res.data.data.role); // Update userRole state immediately
+                setUserRole(res.data.data.role);
 
-                navigate('/'); // Navigate to home/dashboard
+                if (onSuccess) {
+                    onSuccess(); // close modal + redirect
+                } else {
+                    navigate('/');
+                }
             }
         } catch (err) {
             setMessage(err.response?.data?.message || 'Registration failed.');
@@ -103,19 +105,21 @@ const Register = ({ setIsLoggedIn, setUserRole }) => {
                         onChange={handleChange}
                         required
                     />
-                    <span className="toggle-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)} >
-                        {showConfirmPassword ? (
-                            <MdVisibility size={22} />
-                        ) : (
-                            <MdVisibilityOff size={22} />
-                        )}
+                    <span className="toggle-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                        {showConfirmPassword ? <MdVisibility size={22} /> : <MdVisibilityOff size={22} />}
                     </span>
                 </div>
 
                 <button type="submit">Register</button>
 
                 <p className="footer">
-                    Already have an account? <Link to="/login">Login</Link>
+                    Already have an account?{' '}
+                    <span
+                        style={{ color: 'skyblue', cursor: 'pointer' }}
+                        onClick={switchToLogin}
+                    >
+                        Login
+                    </span>
                 </p>
 
                 {message && <p className="message">{message}</p>}
@@ -125,5 +129,3 @@ const Register = ({ setIsLoggedIn, setUserRole }) => {
 };
 
 export default Register;
-
-

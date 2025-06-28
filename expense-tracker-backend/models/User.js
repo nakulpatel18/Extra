@@ -1,14 +1,44 @@
-const mongoose = require('mongoose');
+// -- expense-tracker-backend\models\User.js --
 
-const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String,
-    role: { type: String, enum: ['user', 'admin'], default: 'user',
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt'); // Import bcrypt for pre-save hook if you use it
+
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
     },
-    // Fields for password reset token and its expiration
-    resetPasswordToken: String,    // Stores the hashed reset token
-    resetPasswordExpires: Date,    // Stores the expiration timestamp
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    // ADDED: Fields for password reset functionality
+    resetPasswordToken: String,
+    resetPasswordExpire: Date, // Store as Date type
 });
 
-module.exports = mongoose.model('User', userSchema);
+// Optional: Pre-save hook to hash password if it's modified (ensure this is present if intended)
+// UserSchema.pre('save', async function(next) {
+//     if (!this.isModified('password')) {
+//         return next();
+//     }
+//     const salt = await bcrypt.genSalt(10);
+//     this.password = await bcrypt.hash(this.password, salt);
+//     next();
+// });
+
+module.exports = mongoose.model('User', UserSchema);

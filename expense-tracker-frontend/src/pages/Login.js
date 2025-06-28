@@ -3,15 +3,15 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api/api';
-import './Login.css'; // ONLY import Login.css
+import './Login.css';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
-function Login({ setIsLoggedIn, setUserRole }) {
+function Login({ setIsLoggedIn, setUserRole, onSuccess, switchToRegister }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,11 +21,15 @@ function Login({ setIsLoggedIn, setUserRole }) {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('userRole', res.data.role);
                 localStorage.setItem('userId', res.data.userId);
-                
+
                 setIsLoggedIn(true);
                 setUserRole(res.data.role);
 
-                navigate('/');
+                if (onSuccess) {
+                    onSuccess(); // close modal + redirect
+                } else {
+                    navigate('/');
+                }
             }
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
@@ -33,11 +37,11 @@ function Login({ setIsLoggedIn, setUserRole }) {
     };
 
     return (
-        <div className="login-container"> {/* Uses login-container */}
-            <form onSubmit={handleSubmit} className="login-form"> {/* Uses login-form */}
+        <div className="login-container">
+            <form onSubmit={handleSubmit} className="login-form">
                 <h2>Login to Your Account</h2>
 
-                <div className='form-group'> {/* Using form-group from Login.css */}
+                <div className='form-group'>
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"
@@ -49,10 +53,10 @@ function Login({ setIsLoggedIn, setUserRole }) {
                     />
                 </div>
 
-                <div className='form-group'> {/* Using form-group from Login.css */}
+                <div className='form-group'>
                     <label htmlFor="password">Password</label>
                     <div className="input-with-icon">
-                        <input 
+                        <input
                             id="password"
                             type={showPassword ? 'text' : 'password'}
                             value={password}
@@ -68,15 +72,21 @@ function Login({ setIsLoggedIn, setUserRole }) {
                         </span>
                     </div>
                 </div>
-                
+
                 <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
 
                 <button type="submit">Login</button>
-                
+
                 {error && <p className="message error-message">{error}</p>}
 
                 <p className="footer">
-                    Don't have an account? <Link to="/register">Register</Link>
+                    Don't have an account?{' '}
+                    <span
+                        style={{ color: 'skyblue', cursor: 'pointer' }}
+                        onClick={switchToRegister}
+                    >
+                        Register
+                    </span>
                 </p>
             </form>
         </div>
@@ -84,5 +94,3 @@ function Login({ setIsLoggedIn, setUserRole }) {
 }
 
 export default Login;
-
-

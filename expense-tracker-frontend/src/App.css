@@ -60,31 +60,31 @@ h2 {
     flex-shrink: 0;
 }
 
-/* Main Navigation */
+/* ✅ Fixed Main Navigation */
 .app-header nav.main-nav {
     display: flex;
-    width: 100%;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 1.5rem;
 }
 
 .app-header nav.main-nav .main-links {
     display: flex;
-    gap: 1.5rem;
     justify-content: center;
-    flex-grow: 1;
-    flex-basis: auto;
-    order: 1;
-    padding: 0 1rem;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
 }
 
 .app-header nav.main-nav .auth-links {
     display: flex;
-    gap: 1rem;
+    justify-content: flex-end;
     align-items: center;
+    gap: 1rem;
     flex-shrink: 0;
-    order: 2;
 }
 
 @media (max-width: 768px) {
@@ -104,7 +104,6 @@ h2 {
     .app-header nav.main-nav .auth-links {
         width: 100%;
         justify-content: flex-end;
-        margin-left: 0;
         order: 2;
     }
 }
@@ -139,4 +138,44 @@ h2 {
 .profile-icon-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
     text-decoration: none;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Modal Content (Shared) */
+.modal-content {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 1.2rem;
+    border-radius: 20px;
+    width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    position: relative;
+    scrollbar-width: none;
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-login {
+    max-height: 600px;
+}
+
+.modal-register {
+    max-height: 90vh;
+    overflow-y: auto;
 }
