@@ -5,11 +5,12 @@ const router = express.Router();
 const User = require('../models/User');
 const Expense = require('../models/Expense');
 const adminAuth = require('../middlewares/adminAuth.middleware'); // Import admin auth middleware
-const bcrypt = require('bcrypt'); // Required for updating user passwords/roles
+const bcrypt = require('bcrypt');
 
 // Middleware to ensure all routes in this file are admin-protected
 router.use(adminAuth);
 
+// User Management Routes
 // @route   GET /api/admin/users
 // @desc    Get all users (Admin only)
 // @access  Private (Admin)
@@ -77,13 +78,14 @@ router.delete('/users/:id', async (req, res) => {
     }
 });
 
+// All Expenses Routes
 // @route   GET /api/admin/expenses
 // @desc    Get all expenses from all users (Admin only)
 // @access  Private (Admin)
 router.get('/expenses', async (req, res) => {
     try {
-        // Populate the 'user' field to include user details with each expense
-        const expenses = await Expense.find().populate('user', 'name email'); // Fetch name and email of user
+        // Populate the 'user' field to include user details (name and email) with each expense
+        const expenses = await Expense.find().populate('user', 'name email'); // IMPORTANT: Added 'name' here
         res.json(expenses);
     } catch (err) {
         console.error(err.message);
