@@ -125,3 +125,5 @@ const Register = ({ setIsLoggedIn, setUserRole }) => {
 };
 
 export default Register;
+
+
