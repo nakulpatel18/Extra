@@ -24,7 +24,7 @@ const features = [
     },
     {
         title: 'Interactive Charts',
-        description: 'Visualize your spending patterns using bar charts./nVisualize your monthly spending trends with an interactive line chart'
+        description: 'Visualize your spending patterns using bar charts.Visualize your monthly spending trends with an interactive line chart'
     }
 ];
 

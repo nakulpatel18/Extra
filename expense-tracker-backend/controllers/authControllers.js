@@ -96,8 +96,8 @@ const forgotPassword = async (req, res) => {
             subject: 'Expense Tracker: Password Reset Request',
             html: `
                 <p>You are receiving this because you (or someone else) have requested the reset of the password for your account.</p>
-                <p>Please click on the following link, or paste this into your browser to complete the process:</p>
-                <p><a href="${resetUrl}">${resetUrl}</a></p>
+                <p>Please click on the following link, or paste this into your browser to complete the process:</p><br>
+                <p><a href="${resetUrl}">${resetUrl}</a></p><br>
                 <p>This link will expire in 1 hour.</p>
                 <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
             `,
