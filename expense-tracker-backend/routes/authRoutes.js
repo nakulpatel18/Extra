@@ -1,5 +1,3 @@
-// -- expense-tracker-backend\routes\auth.routes.js --
-
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -9,9 +7,8 @@ const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 const jwtSecret = process.env.JWT_SECRET || 'supersecretjwtkey';
 
-// @route   POST /api/auth/register
-// @desc    Register user
-// @access  Public
+
+// Register user
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -55,9 +52,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// @route   POST /api/auth/login
-// @desc    Authenticate user & get token
-// @access  Public
+// Authenticate user & get token
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -96,9 +91,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// @route   POST /api/auth/forgot-password
-// @desc    Request password reset
-// @access  Public
+// Request password reset
 router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
     try {
@@ -114,7 +107,7 @@ router.post('/forgot-password', async (req, res) => {
         user.resetPasswordExpire = Date.now() + 3600000; // 1 hour (3600000 ms)
 
         await user.save();
-        console.log('Forgot Password: User saved with token hash:', user.resetPasswordToken); // Debugging
+        // console.log('Forgot Password: User saved with token hash:', user.resetPasswordToken); // Debugging
 
         const frontendBaseUrl = process.env.FRONTEND_URL || `http://localhost:3000`;
         const resetUrl = `${frontendBaseUrl}/reset-password/${resetToken}`; // Use the UNHASHED token for the URL
@@ -143,9 +136,7 @@ router.post('/forgot-password', async (req, res) => {
 });
 
 
-// @route   POST /api/auth/reset-password/:token
-// @desc    Reset password using token
-// @access  Public
+// Reset password using token
 router.post('/reset-password/:token', async (req, res) => {
     const { token } = req.params; // This is the UNHASHED token from the URL
     const { newPassword } = req.body;
@@ -153,8 +144,8 @@ router.post('/reset-password/:token', async (req, res) => {
     try {
         // HASH THE INCOMING TOKEN EXACTLY AS IT WAS HASHED FOR STORAGE
         const resetTokenHashFromUrl = crypto.createHash('sha256').update(token).digest('hex');
-        console.log('Reset Password: Token from URL (unhashed):', token); // Debugging
-        console.log('Reset Password: Token hash from URL:', resetTokenHashFromUrl); // Debugging
+        // console.log('Reset Password: Token from URL (unhashed):', token); // Debugging
+        // console.log('Reset Password: Token hash from URL:', resetTokenHashFromUrl); // Debugging
 
         const user = await User.findOne({
             resetPasswordToken: resetTokenHashFromUrl, // Use the hashed version for query
@@ -185,7 +176,7 @@ router.post('/reset-password/:token', async (req, res) => {
         user.resetPasswordExpire = undefined;
 
         await user.save();
-        console.log('Reset Password: Password successfully reset for user:', user.email); // Debugging
+        // console.log('Reset Password: Password successfully reset for user:', user.email); // Debugging
 
         res.status(200).json({ message: 'Password reset successfully!' });
 

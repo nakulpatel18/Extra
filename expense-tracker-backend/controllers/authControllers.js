@@ -1,18 +1,10 @@
-
-
-// -- expense-tracker-backend\controllers\authControllers.js --
-
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 
-/**
- * @desc    Register a new user
- * @route   POST /api/auth/register
- * @access  Public
- */
+/* Register a new user */
 const register = async (req, res) => {
     const { name, email, password } = req.body;
     console.log("Incoming registration data:", req.body);
@@ -38,11 +30,7 @@ const register = async (req, res) => {
     }
 };
 
-/**
- * @desc    Authenticate user & get token
- * @route   POST /api/auth/login
- * @access  Public
- */
+/* Authenticate user & get token */
 const login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -61,18 +49,14 @@ const login = async (req, res) => {
         const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         console.log('User logged in:', user.email);
-        res.json({ token, role: user.role, userId: user._id }); // Make sure userId and role are included
+        res.json({ token, role: user.role, userId: user._id }); 
     } catch (error) {
         console.error("❌ Error in login:", error);
         res.status(500).json({ message: 'Login failed', error: error.message });
     }
 };
 
-/**
- * @desc    Request password reset link
- * @route   POST /api/auth/forgot-password
- * @access  Public
- */
+/* Request password reset link */
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
@@ -134,11 +118,7 @@ const forgotPassword = async (req, res) => {
     }
 };
 
-/**
- * @desc    Reset user password using token
- * @route   POST /api/auth/reset-password/:token
- * @access  Public
- */
+/* Reset user password using token */
 const resetPassword = async (req, res) => {
     const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 

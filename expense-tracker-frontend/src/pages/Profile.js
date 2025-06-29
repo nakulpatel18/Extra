@@ -1,9 +1,7 @@
-// -- expense-tracker-frontend\src\pages\Profile.js --
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api/api'; // Your custom axios instance
-import '../pages/ProfileAuthForms.css'; // Import from NEW combined CSS
+import api from '../api/api'; 
+import '../pages/ProfileAuthForms.css'; 
 
 const Profile = () => {
     const [user, setUser] = useState(null);
@@ -41,8 +39,8 @@ const Profile = () => {
     }
 
     return (
-        <div className="form-container-wrapper"> {/* Uses common wrapper class */}
-            <div className="auth-form-card"> {/* Uses common form card class */}
+        <div className="form-container-wrapper">
+            <div className="auth-form-card">
                 <h2>Your Profile</h2>
                 <div className="profile-details">
                     <p><strong>Username:</strong> {user.name}</p>
@@ -50,7 +48,7 @@ const Profile = () => {
                 </div>
                 
 
-                <div className="profile-actions"> {/* Uses common profile-actions class */}
+                <div className="profile-actions">
                     <Link to="/profile/update" className="profile-action-button">
                         Update Details
                     </Link>

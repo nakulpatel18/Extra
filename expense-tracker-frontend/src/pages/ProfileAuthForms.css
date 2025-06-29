@@ -1,12 +1,12 @@
-.form-container-wrapper { /* General wrapper for pages with forms */
+.form-container-wrapper { 
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 150px); /* Adjust height to fit header/footer */
+    min-height: calc(100vh - 150px);
     padding: 20px;
 }
 
-.auth-form-card { /* General card styling for all forms */
+.auth-form-card { 
     background-color: white;
     padding: 40px;
     border-radius: 15px;
@@ -18,13 +18,13 @@
 }
 
 .auth-form-card h2 {
-    color: #4f46e5; /* Primary blue for headings */
+    color: #4f46e5; 
     margin-bottom: 30px;
     font-size: 2rem;
     font-weight: 600;
 }
 
-.auth-form-card .form-group { /* Wrapper for label/input pairs */
+.auth-form-card .form-group { 
     text-align: left;
     margin-bottom: 20px;
 }
@@ -42,14 +42,14 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    box-sizing: border-box; /* Ensures padding/border are inside width */
+    box-sizing: border-box;
     transition: border-color 0.3s;
 }
 
 .auth-form-card input:focus {
     outline: none;
-    border-color: #818cf8; /* Light blue focus border for inputs */
-    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.4); /* Light blue focus shadow */
+    border-color: #818cf8; 
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.4); 
 }
 
 /* Style for input with a visibility icon */
@@ -59,8 +59,8 @@
 }
 
 .input-with-icon input {
-    padding-right: 40px; /* Make space for the icon */
-    margin-bottom: 0; /* Clear margin if parent provides it */
+    padding-right: 40px; 
+    margin-bottom: 0; 
 }
 
 .input-with-icon .toggle-icon {
@@ -69,7 +69,7 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #666; /* Gray icon color */
+    color: #666; 
 }
 
 /* Common button styling for submit actions */
@@ -84,12 +84,12 @@
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
     text-transform: uppercase;
-    background-color: #4f46e5; /* Primary blue button color */
+    background-color: #4f46e5; 
     color: white;
 }
 
 .auth-form-card button[type="submit"]:hover {
-    background-color: #4338ca; /* Darker blue on hover */
+    background-color: #4338ca; 
     transform: translateY(-2px);
 }
 
@@ -97,13 +97,13 @@
 .auth-form-card .link-button {
     background: none;
     border: none;
-    color: #4f46e5; /* Original blue link color */
+    color: #4f46e5; 
     text-decoration: underline;
     font-size: 0.95rem;
     cursor: pointer;
     font-weight: bold;
-    padding: 0; /* Remove default button padding */
-    margin: 0; /* Remove default button margin */
+    padding: 0; 
+    margin: 0; 
 }
 
 .auth-form-card .link-button:hover {
@@ -114,11 +114,11 @@
 .message {
     margin-top: 15px;
     font-weight: bold;
-    color: #28a745; /* Green for success */
+    color: #28a745; 
 }
 
 .error-message {
-    color: #dc3545; /* Red for error */
+    color: #dc3545; 
 }
 
 /* Specific styling for Forgot Password link if it's separate */
@@ -127,12 +127,12 @@
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: bold;
-    display: block; /* Ensure it takes its own line */
-    text-align: right; /* Align to the right */
-    margin-bottom: 15px; /* Space from the button */
+    display: block; 
+    text-align: right; 
+    margin-bottom: 15px; 
 }
 
-/* Profile specific styles (simple, mostly using common card styles) */
+/* Profile specific styles  */
 .profile-details p {
     font-size: 1.1rem;
     color: #333;
@@ -154,7 +154,7 @@
     border-radius: 8px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    box-sizing: border-box; /* Ensure padding is included in width */
+    box-sizing: border-box; 
 }
 
 .profile-actions .profile-action-button:hover {

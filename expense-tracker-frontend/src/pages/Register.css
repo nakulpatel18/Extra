@@ -1,5 +1,3 @@
-
-
 .register-container {
     min-height: 100vh;
     display: flex;
@@ -114,7 +112,6 @@
     color: #dc2626;
 }
 
-/*extra*/
 
 .register-container {
     background: transparent !important;

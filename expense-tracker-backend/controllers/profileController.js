@@ -1,18 +1,12 @@
-// -- expense-tracker-backend\controllers\profileController.js --
-
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
-/**
- * @desc    Get logged in user's profile
- * @route   GET /api/users/profile
- * @access  Private
- */
+/* Get logged in user's profile */
 const getUserProfile = async (req, res) => {
     try {
         console.log("DEBUG: profileController.js - getUserProfile: req.user:", req.user);
         console.log("DEBUG: profileController.js - getUserProfile: req.user.id:", req.user.id);
-        // req.user.id is set by the auth.middleware.js
+        
         const user = await User.findById(req.user.id).select('-password -resetPasswordToken -resetPasswordExpire -__v');
         if (!user) {
             console.warn("DEBUG: profileController.js - getUserProfile: User not found for ID:", req.user.id);
@@ -25,11 +19,7 @@ const getUserProfile = async (req, res) => {
     }
 };
 
-/**
- * @desc    Update logged in user's profile
- * @route   PUT /api/users/profile
- * @access  Private
- */
+/* Update logged in user's profile */
 const updateUserProfile = async (req, res) => {
     const { name, email } = req.body; // Allow updating name and email
     try {
@@ -67,11 +57,7 @@ const updateUserProfile = async (req, res) => {
     }
 };
 
-/**
- * @desc    Change logged in user's password
- * @route   PUT /api/users/change-password
- * @access  Private
- */
+/* Change logged in user's password */
 const changeUserPassword = async (req, res) => {
     const { currentPassword, newPassword, confirmNewPassword } = req.body;
 

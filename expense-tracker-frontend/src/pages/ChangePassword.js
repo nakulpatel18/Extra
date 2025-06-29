@@ -1,9 +1,7 @@
-// -- expense-tracker-frontend\src\pages\ChangePassword.js --
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
-import '../pages/ProfileAuthForms.css'; // Import from NEW combined CSS
+import '../pages/ProfileAuthForms.css'; 
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
 const ChangePassword = () => {
@@ -55,14 +53,14 @@ const ChangePassword = () => {
     };
 
     return (
-        <div className="form-container-wrapper"> {/* Uses common wrapper class */}
-            <form onSubmit={handleSubmit} className="auth-form-card"> {/* Uses common form card class */}
+        <div className="form-container-wrapper">
+            <form onSubmit={handleSubmit} className="auth-form-card">
                 <h2>Change Password</h2>
 
                 {error && <p className="message error-message">{error}</p>}
                 {message && <p className="message">{message}</p>}
 
-                <div className='form-group'> {/* Uses common form-group class */}
+                <div className='form-group'>
                     <label htmlFor="currentPassword">Current Password</label>
                     <div className="input-with-icon">
                         <input
@@ -80,7 +78,7 @@ const ChangePassword = () => {
                     </div>
                 </div>
 
-                <div className='form-group'> {/* Uses common form-group class */}
+                <div className='form-group'> 
                     <label htmlFor="newPassword">New Password</label>
                     <div className="input-with-icon">
                         <input
@@ -98,7 +96,7 @@ const ChangePassword = () => {
                     </div>
                 </div>
 
-                <div className='form-group'> {/* Uses common form-group class */}
+                <div className='form-group'> 
                     <label htmlFor="confirmNewPassword">Confirm New Password</label>
                     <div className="input-with-icon">
                         <input

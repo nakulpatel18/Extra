@@ -1,9 +1,7 @@
-// -- expense-tracker-frontend\src\pages\ResetPassword.js --
-
 import React, { useState } from 'react'
     import { useParams, useNavigate, Link } from 'react-router-dom';
     import api from '../api/api';
-    import '../pages/ProfileAuthForms.css'; // Import from NEW combined CSS
+    import '../pages/ProfileAuthForms.css';
     import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
 const ResetPassword = () => {
@@ -42,12 +40,12 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="form-container-wrapper"> {/* Uses common wrapper class */}
-            <form onSubmit={handleSubmit} className="auth-form-card"> {/* Uses common form card class */}
+        <div className="form-container-wrapper">
+            <form onSubmit={handleSubmit} className="auth-form-card"> 
                 <h2>Reset Password</h2>
                 <p>Enter your new password.</p>
 
-                <div className="form-group"> {/* Uses common form-group class */}
+                <div className="form-group"> 
                     <label htmlFor="newPassword">New Password</label>
                     <div className="input-with-icon">
                         <input
@@ -64,7 +62,7 @@ const ResetPassword = () => {
                     </div>
                 </div>
 
-                <div className="form-group"> {/* Uses common form-group class */}
+                <div className="form-group">
                     <label htmlFor="confirmNewPassword">Confirm New Password</label>
                     <div className="input-with-icon">
                         <input

@@ -1,6 +1,3 @@
-
-// -- expense-tracker-frontend\src\pages\Dashboard.js --
-
 import React, { useState, useEffect, useRef } from 'react';
 import api from '../api/api';
 import CalendarSelector from '../components/CalendarSelector';

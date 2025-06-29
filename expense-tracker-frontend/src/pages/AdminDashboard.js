@@ -1,8 +1,6 @@
-// -- expense-tracker-frontend\src\pages\AdminDashboard.js --
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../pages/Admin.css'; // Adjust path if Admin.css is not in the same folder as the pages
+import '../pages/Admin.css'; 
 
 const AdminDashboard = () => {
     return (

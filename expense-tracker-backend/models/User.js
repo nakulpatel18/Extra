@@ -22,23 +22,10 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user',
     },
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now,
-    // },
-    // ADDED: Fields for password reset functionality
+    
     resetPasswordToken: String,
     resetPasswordExpire: Date, // Store as Date type
 });
 
-// Optional: Pre-save hook to hash password if it's modified (ensure this is present if intended)
-// UserSchema.pre('save', async function(next) {
-//     if (!this.isModified('password')) {
-//         return next();
-//     }
-//     const salt = await bcrypt.genSalt(10);
-//     this.password = await bcrypt.hash(this.password, salt);
-//     next();
-// });
 
 module.exports = mongoose.model('User', UserSchema);

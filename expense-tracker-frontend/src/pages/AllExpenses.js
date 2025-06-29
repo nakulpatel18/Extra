@@ -1,14 +1,12 @@
-// -- expense-tracker-frontend\src\pages\AllExpenses.js --
-
 import React, { useState, useEffect } from 'react';
 import api from '../api/api';
-import '../pages/Admin.css'; // Reusing admin styles
+import '../pages/Admin.css';
 
 const AllExpenses = () => {
     const [expenses, setExpenses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [confirmDelete, setConfirmDelete] = useState(null); // State to manage delete confirmation
+    const [confirmDelete, setConfirmDelete] = useState(null); 
 
     useEffect(() => {
         const fetchAllExpenses = async () => {
@@ -17,8 +15,6 @@ const AllExpenses = () => {
                 const res = await api.get('/admin/expenses');
                 
                 // Client-side sorting:
-                // 1. Sort by user.name (alphabetically)
-                // 2. Then, sort by date (most recent first) within each user group
                 const sortedExpenses = res.data.sort((a, b) => {
                     // Primary sort: by username
                     const userNameA = a.user?.name ? a.user.name.toLowerCase() : '';
@@ -30,7 +26,7 @@ const AllExpenses = () => {
                     // Secondary sort: by date (descending) if usernames are the same
                     const dateA = new Date(a.date);
                     const dateB = new Date(b.date);
-                    return dateB - dateA; // Most recent first
+                    return dateB - dateA;
                 });
 
                 setExpenses(sortedExpenses);
@@ -75,7 +71,7 @@ const AllExpenses = () => {
                     <table className="admin-table">
                         <thead>
                             <tr>
-                                <th>User Name</th> {/* Changed from Email to User Name */}
+                                <th>User Name</th> 
                                 <th>Amount</th>
                                 <th>Category</th>
                                 <th>Date</th>
@@ -86,7 +82,6 @@ const AllExpenses = () => {
                         <tbody>
                             {expenses.map((expense) => (
                                 <tr key={expense._id}>
-                                    {/* Display user name instead of email */}
                                     <td>{expense.user ? expense.user.name : 'N/A'}</td> 
                                     <td>₹{expense.amount.toFixed(2)}</td>
                                     <td>{expense.category}</td>

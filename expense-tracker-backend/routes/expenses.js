@@ -16,26 +16,6 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Create a new expense for the authenticated user
-// router.post('/', auth, async (req, res) => {
-//     const { title, amount, category, type, date } = req.body;
-
-//     const newExpense = new Expense({
-//         title,
-//         amount,
-//         category,
-//         type,
-//         date,
-//         user: req.user.id
-//     });
-
-//     try {
-//         const savedExpense = await newExpense.save();
-//         res.status(201).json(savedExpense);
-//     } catch (err) {
-//         res.status(400).json({ message: err.message });
-//     }
-// });
-
 router.post('/', auth, async (req, res) => {
     try {
         const { title, amount, category, type, date } = req.body;
@@ -52,7 +32,7 @@ router.post('/', auth, async (req, res) => {
             category,
             type,
             date,
-            user: req.user.id // This should be the user's ID from the JWT
+            user: req.user.id 
         });
 
         const savedExpense = await newExpense.save();
@@ -62,7 +42,6 @@ router.post('/', auth, async (req, res) => {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
-
 
 
 // Update an expense for the authenticated user
