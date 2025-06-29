@@ -64,6 +64,7 @@ function Dashboard() {
             try {
                 const res = await api.post('/expenses', data);
                 setExpenses([...expenses, res.data]);
+                console.log(res);
             } catch (err) {
                 console.error('Error adding expense:', err);
             }

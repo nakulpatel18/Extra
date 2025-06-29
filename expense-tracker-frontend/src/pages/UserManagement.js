@@ -1,8 +1,6 @@
-// -- expense-tracker-frontend\src\pages\UserManagement.js --
-
 import React, { useState, useEffect } from 'react';
-import api from '../api/api'; // Use your custom api instance
-import '../pages/Admin.css'; // Adjust path if Admin.css is not in the same folder as the pages
+import api from '../api/api'; 
+import '../pages/Admin.css'; 
 
 const UserManagement = () => {
     const [users, setUsers] = useState([]);

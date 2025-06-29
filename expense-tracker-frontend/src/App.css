@@ -60,7 +60,7 @@ h2 {
     flex-shrink: 0;
 }
 
-/* ✅ Fixed Main Navigation */
+
 
 .app-header nav.main-nav {
     display: flex;
@@ -70,7 +70,7 @@ h2 {
     flex-wrap: wrap;
     gap: 1rem;
     padding: 0 1.5rem;
-    position: relative; /* ⬅ Needed to position auth-links */
+    position: relative; 
 }
 
 .app-header nav.main-nav .main-links {

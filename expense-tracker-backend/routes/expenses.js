@@ -6,33 +6,64 @@ const auth = require('../middlewares/auth.middleware');
 // Get all expenses for the authenticated user
 router.get('/', auth, async (req, res) => {
     try {
+        console.log("DEBUG: expenses.js - GET /expenses: req.user.id:", req.user.id);
         const expenses = await Expense.find({ user: req.user.id });
         res.json(expenses);
     } catch (err) {
+        console.error("DEBUG: expenses.js - GET /expenses error:", err.message);
         res.status(500).json({ message: err.message });
     }
 });
 
 // Create a new expense for the authenticated user
+// router.post('/', auth, async (req, res) => {
+//     const { title, amount, category, type, date } = req.body;
+
+//     const newExpense = new Expense({
+//         title,
+//         amount,
+//         category,
+//         type,
+//         date,
+//         user: req.user.id
+//     });
+
+//     try {
+//         const savedExpense = await newExpense.save();
+//         res.status(201).json(savedExpense);
+//     } catch (err) {
+//         res.status(400).json({ message: err.message });
+//     }
+// });
+
 router.post('/', auth, async (req, res) => {
-    const { title, amount, category, type, date } = req.body;
-
-    const newExpense = new Expense({
-        title,
-        amount,
-        category,
-        type,
-        date,
-        user: req.user.id
-    });
-
     try {
+        const { title, amount, category, type, date } = req.body;
+        console.log('DEBUG: expenses.js - POST /expenses - Body:', req.body);
+        console.log('DEBUG: expenses.js - POST /expenses - Authenticated User ID:', req.user.id);
+
+        if (!title || !amount || !category || !type || !date) {
+            return res.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const newExpense = new Expense({
+            title,
+            amount,
+            category,
+            type,
+            date,
+            user: req.user.id // This should be the user's ID from the JWT
+        });
+
         const savedExpense = await newExpense.save();
         res.status(201).json(savedExpense);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        console.error('DEBUG: expenses.js - Error in POST /expenses:', err);
+        res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
+
+
 
 // Update an expense for the authenticated user
 router.put('/:id', auth, async (req, res) => {

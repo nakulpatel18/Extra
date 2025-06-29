@@ -22,10 +22,10 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user',
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+    // createdAt: {
+    //     type: Date,
+    //     default: Date.now,
+    // },
     // ADDED: Fields for password reset functionality
     resetPasswordToken: String,
     resetPasswordExpire: Date, // Store as Date type

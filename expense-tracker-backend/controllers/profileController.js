@@ -10,9 +10,12 @@ const bcrypt = require('bcrypt');
  */
 const getUserProfile = async (req, res) => {
     try {
+        console.log("DEBUG: profileController.js - getUserProfile: req.user:", req.user);
+        console.log("DEBUG: profileController.js - getUserProfile: req.user.id:", req.user.id);
         // req.user.id is set by the auth.middleware.js
-        const user = await User.findById(req.user.id).select('-password -resetPasswordToken -resetPasswordExpires -__v');
+        const user = await User.findById(req.user.id).select('-password -resetPasswordToken -resetPasswordExpire -__v');
         if (!user) {
+            console.warn("DEBUG: profileController.js - getUserProfile: User not found for ID:", req.user.id);
             return res.status(404).json({ message: 'User not found' });
         }
         res.json(user);

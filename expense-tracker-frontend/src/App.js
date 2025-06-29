@@ -1,5 +1,3 @@
-// -- App.js --
-
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import './App.css';

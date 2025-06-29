@@ -19,6 +19,7 @@ const ExpenseSchema = new mongoose.Schema({
     },
     type: {
         type: String, // "income" or "expense"
+        enum: ['income', 'expense'],
         required: true
     },
     user: {
